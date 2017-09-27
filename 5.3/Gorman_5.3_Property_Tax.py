@@ -31,7 +31,7 @@ def assess_value(base_value):
     # divide assessed_value by 100, then multiply by .72
 def calc_tax(assessed_value):
     tax = ((assessed_value / 100) * .72)
-    print('Your tax amount owed is $', format(tax, ',.2f'))
+    print('Your tax amount owed is $', format(tax, ',.2f'), sep='')
 
 
 # main function will get base property value and pass to assess_value.
