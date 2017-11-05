@@ -13,6 +13,7 @@
 #  in the comments.
 
 
+# import pickle
 import pickle
 
 # Global constants for menu
@@ -24,8 +25,11 @@ DELETE = 5
 QUIT = 6
 
 
+# main function
 def main():
+    # try/except for file not found
     try:
+        # open file and assign to variable
         input_file = open('customer_file.dat', 'rb')
         customers = pickle.load(input_file)
     except (FileNotFoundError, IOError):
@@ -36,7 +40,7 @@ def main():
     choice = 0
 
     while choice != QUIT:
-        # get the user's menu choice
+        # get the user's menu choice and call menu function
         choice = menu()
 
         if choice == LOOK_UP:
@@ -53,6 +57,7 @@ def main():
             save(customers)
 
 
+# menu function
 def menu():
     print()
     print('Customer email lookup')
@@ -71,15 +76,18 @@ def menu():
     return choice
 
 
+# look up function
 def look_up(customers):
     name = input("Enter your customer\'s name.: ")
     print(customers.get(name, 'No customer by that name.'))
 
 
+# view all customers function
 def view(customers):
     print(customers)
 
 
+# add customer function
 def add(customers):
     name = input('Enter your customer\'s name. :')
     email = input('Enter the customer\'s email address.: ')
@@ -89,6 +97,7 @@ def add(customers):
         print('That customer already exists.')
 
 
+# change function
 def change(customers):
     name = input('Enter your customer\'s name. :')
     if name in customers:
@@ -98,6 +107,7 @@ def change(customers):
         print('No customer by that name.')
 
 
+# delete customer function
 def delete(customers):
     name = input('Enter your customer\'s name. :')
     if name in customers:
@@ -106,6 +116,7 @@ def delete(customers):
         print('No customer by that name.')
 
 
+# quit/save file function
 def save(customers):
     print('Your customer\'s file has been updated.')
     save_file = open('customer_file.dat', 'wb')
@@ -113,4 +124,5 @@ def save(customers):
     save_file.close()
 
 
+# call main
 main()
